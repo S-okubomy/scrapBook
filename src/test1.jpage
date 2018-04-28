@@ -1,0 +1,84 @@
+
+// この3行で解析できる
+StringTagger tagger = SenFactory.getStringTagger(null);
+List<Token> tokens = new ArrayList<Token>();
+tagger.analyze(" jp」です", tokens);
+// 解析結果の中身をいろいろ出力してみる
+for (Token token : tokens) {
+    
+    String hinshi = token.getMorpheme().getPartOfSpeech().split("-")[0];
+    
+    if (hinshi.matches(".*名詞.*|動詞|.*助詞.*|未知語")) {
+        System.out.println("=====");
+        System.out.println("surface : " + token.getSurface());
+        System.out.println("cost : " + token.getCost());
+        System.out.println("length : " + token.getLength());
+        System.out.println("start : " + token.getStart());
+        System.out.println("basicForm : " + token.getMorpheme().getBasicForm());
+        System.out.println("conjugationalForm : " + token.getMorpheme().getConjugationalForm());
+        System.out.println("conjugationalType : " + token.getMorpheme().getConjugationalType());
+        System.out.println("partOfSpeech : " + token.getMorpheme().getPartOfSpeech());
+        System.out.println("pronunciations : " + token.getMorpheme().getPronunciations());
+        System.out.println("readings : " + token.getMorpheme().getReadings());
+    }
+}
+
+int testValue = Double.compare(Double.valueOf("1.48"), Double.valueOf("2.48"));
+System.out.println(testValue);
+
+
+java.util.Date date = new java.util.Date();java.text.SimpleDateFormat sdf1 = new java.text.SimpleDateFormat("M'月'd'日'");
+String today = sdf1.format(date);
+System.out.println(today);
+
+java.util.Date today = DateUtil.truncateTime(new Date());
+
+
+
+
+Scanner sc = new Scanner(System.in);
+String word = sc.nextLine();
+sc.close();
+ProcessBuilder processBuilder = new ProcessBuilder("C:/Users/Administrator/mailWeather.py");
+Process process = processBuilder.start();
+BufferedReader reader = 
+		new BufferedReader(new InputStreamReader(process.getInputStream()));
+BufferedWriter writer = 
+		new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+
+writer.write(word);
+writer.newLine();
+writer.flush();
+
+String ret = reader.readLine();
+System.out.println(ret);
+
+
+// exception
+
+try {
+//    throw new OutOfMemoryError();
+      throw new RuntimeException();
+}
+
+catch (Exception e) {
+    System.out.println("EXCEPTION");
+}
+
+catch (Throwable t) {
+    System.out.println("THROWABLE");
+}
+
+// URL取得String reqUrl = "http://www.google.com/search?q=";
+String splitSerchWord = "母の日はいつ";
+String reqUrlAll = reqUrl + splitSerchWord + "&ie=UTF-8&oe=UTF-8&num=20";
+List<String> studyHtmlList = GetNetInfoUtil.getHtmlListForGoogle(reqUrlAll);
+
+System.out.println("以下、検索元URL");
+System.out.println(reqUrlAll);
+System.out.println("以下、URLリスト（検索結果）");
+for (String htmlUrl : studyHtmlList) {
+	System.out.println(htmlUrl);
+}
+
+
